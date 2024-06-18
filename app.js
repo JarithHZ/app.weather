@@ -10,17 +10,13 @@ const pressureElement = document.querySelector(".pressure");
 const humidityElement = document.querySelector(".humidity");
 const speedElement = document.querySelector(".speed");
 
-
-// App data
 const weather = {};
 weather.temperature = {
     unit : "celsius"
 }
 
-// API KEY
 const key =  "1cdc1dd720a3ab365da903d6be442104";
 
-// check if the browser supports geolocation
 if('geolocation' in navigator){
     navigator.geolocation.getCurrentPosition(setPosition, showError);
 } else {
@@ -28,7 +24,6 @@ if('geolocation' in navigator){
     notificationElement.innerHTML = "<p> Browser doesn't support Geolocation</p>"
 }
 
-// set user's position
 
 function setPosition(position){
     let latitude = position.coords.latitude;
@@ -37,7 +32,6 @@ function setPosition(position){
     getWeather(latitude, longitude);
 }
 
-// show error when there is an issse with geolocation service
 function showError(error){
     notificationElement.style.display = "block";
     notificationElement.innerHTML = `<p> ${error.messange} </p>`;
@@ -70,9 +64,6 @@ function getWeather(latitude, longitude) {
     });
 }
 
-
-
-// display weather to ui
 function displayWeather(){
     iconElement.innerHTML = `<img src="${weather.iconId}.png"/>`;
     tempElement.innerHTML = `${weather.temperature.value}°<span>C</span>`;
